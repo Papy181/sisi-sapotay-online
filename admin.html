@@ -1,0 +1,53 @@
+<!doctype html><html lang="ht"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISI SAPOTAY Manager</title><link rel="stylesheet" href="style.css"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d2c05"><link rel="apple-touch-icon" href="icon-192.png"></head><body>
+<div id="welcome"><div class="hero"><div class="mark">SS</div><small>SISTÈM JESYON RESPONSAB</small><h1>SISI <b>SAPOTAY</b></h1><p>Jesyon pwofesyonèl kliyan, peman, reta ak peryòd</p><button onclick="requestLogin()">ANTRE NAN SISTÈM NAN →</button><i class="contactBig">116, Rue Vernet, Gves - Haïti<br>Tel: (509) 3330-6184 / 4308-8247</i></div></div>
+<div class="app"><aside><h2>SS <span>SISI SAPOTAY</span></h2><button onclick="page('dash')">◈ Dashboard</button><button onclick="page('clients')">👥 Kliyan</button>
+<button onclick="page('calendar')">▦ Kalandriye Peman</button>
+<button onclick="page('late')">⚠ Kontwòl Reta</button><button onclick="page('payments')">▣ Peman</button>
+<button onclick="page('funds')">💰 Remèt Fon</button>
+<button onclick="page('fees')">◆ Frè & Amand</button>
+<button onclick="page('daily')">▥ Rapò Jounalye</button><button onclick="page('reports')">▤ Rapò Jeneral</button><button onclick="page('periods')">◫ Peryòd & Achiv</button>
+<button onclick="page('audit')">☷ Jounal Aktivite</button><button onclick="page('backup')">⬡ Sovgad</button><em>AKSÈ OPERATÈ • SEKIRIZE</em></aside><main>
+<header><div><small>SISI SAPOTAY • RESPONSAB</small><h1 id="title">Dashboard</h1></div><div class="sessionBox"><b>● SESYON SEKIRIZE</b><button onclick="lockApp()">🔒 Fèmen Sesyon</button></div></header>
+<section id="dash" class="page active"><div class="cards"><article>Total Kliyan<strong id="dc">0</strong></article><article>Total Men<strong id="dh">0</strong></article><article>Total Peman<strong id="dm">0 Gdes</strong></article><article>Resi<strong id="dr">0</strong></article></div><div class="panel"><h2>Rezime</h2><p id="dashPeriod">Peryòd aktif la ap chaje...</p></div></section>
+<section id="clients" class="page"><div class="panel"><div class="head"><h2>Rejis Kliyan</h2><button onclick="addClient()">+ AJOUTE KLIYAN</button></div><p>Operatè a ka ajoute. Modifye/Efase mande kòd responsab.</p><table><thead><tr><th>No</th><th>Nom</th><th>Prénom</th><th>NIF/CIN</th><th>Adrès</th><th>Tel</th><th>Men</th><th>Aksyon</th></tr></thead><tbody id="cr"></tbody></table></div></section>
+<section id="calendar" class="page"><div class="panel"><div class="head"><div><h2>Kalandriye Peman</h2><p>Chwazi yon kliyan pou verifye sèlman dat ki nan peryòd aktif la.</p></div><select id="calClient" onchange="renderCalendar()"></select></div><div id="calSummary"></div><div id="calendarGrid" class="calendarGrid"></div></div></section>
+<section id="late" class="page"><div class="panel"><div class="head"><div><h2>Kontwòl Reta</h2><p>Siveyans otomatik kliyan selon jou peman ki anrejistre yo.</p></div><button onclick="renderLate()">Rafrechi</button></div><table><thead><tr><th>No</th><th>Kliyan</th><th>Men</th><th>Jou Peye</th><th>Jou ki ta dwe peye</th><th>Reta</th><th>Estati</th><th>Fich</th></tr></thead><tbody id="lateRows"></tbody></table></div></section>
+<section id="payments" class="page"><div class="panel"><div class="head"><h2>Peman</h2><button onclick="addPay()">+ AJOUTE PEMAN</button></div><table><thead><tr><th>Resi</th><th>Dat Peman</th><th>Kliyan</th><th>Jou</th><th>Total</th><th>Aksyon</th></tr></thead><tbody id="pr"></tbody></table></div></section>
+<section id="funds" class="page"><div class="panel"><div class="head"><h2>Remèt Fon</h2><button onclick="addFund()">+ REMÈT FON</button></div><p>Fon kapab remèt nan fen sòl la oswa davans. Si kliyan an touche davans, li rete aktif epi li kontinye peye jiska fen sòl la.</p><table><thead><tr><th>N° Bon</th><th>Dat</th><th>Kliyan</th><th>Kalite</th><th>Men</th><th>Montan</th><th>Motif</th><th>Estati</th><th>Aksyon</th></tr></thead><tbody id="fundRows"></tbody></table></div></section>
+<section id="fees" class="page"><div class="panel"><div class="head"><h2>Frè & Amand</h2><button onclick="addFee()">+ AJOUTE FRÈ / AMAND</button></div><p>Kalite ki soti nan règ kanè a: ranplasman kanè 300 Gdes, frè 100 Gdes sou chak men, amand 1 000 Gdes pou ekriti san otorizasyon, ak amand 100 Gdes pou peman apre 5è.</p><table><thead><tr><th>Dat</th><th>Kliyan</th><th>Kalite</th><th>Montan</th><th>Aksyon</th></tr></thead><tbody id="fr"></tbody></table></div></section>
+<section id="daily" class="page"><div class="panel"><div class="head"><div><h2>Rapò Jounalye</h2><p>Chwazi yon sèl jou ki andedan peryòd aktif la pou wè rezime ak detay operasyon jounen an.</p></div><div><input id="dailyDate" type="date"><button onclick="renderDaily()">Afiche</button><button onclick="printDaily()">Enprime / Sove PDF</button></div></div><div id="dailyReport"></div></div></section>
+<section id="reports" class="page"><div class="panel"><div class="head"><h2>Rapò Kontwòl</h2><button onclick="window.print()">Enprime / PDF</button></div><div id="report"></div></div></section>
+<section id="periods" class="page"><div class="panel"><div class="head"><div><h2>Peryòd & Achiv</h2><p>Chak peryòd ki fini konsève nan achiv; apre sa responsab la kòmanse yon nouvo peryòd.</p></div><button onclick="newPeriod()">+ NOUVO PERYÒD</button></div><div id="currentPeriod"></div><h3>Achiv Peryòd</h3><table><thead><tr><th>Peryòd</th><th>Kòmansman</th><th>Fen</th><th>Montan/Jou</th><th>Kliyan</th><th>Kotizasyon</th><th>Fon Remèt</th></tr></thead><tbody id="archiveRows"></tbody></table></div></section>
+<section id="audit" class="page"><div class="panel"><div class="head"><div><h2>Jounal Aktivite</h2><p>Tras teknik operasyon enpòtan ki fèt nan sistèm nan.</p></div><button onclick="renderAudit()">Rafrechi</button></div>
+<table><thead><tr><th>Dat & Lè</th><th>Aksyon</th><th>Detay</th></tr></thead><tbody id="auditRows"></tbody></table></div></section>
+<section id="backup" class="page"><div class="panel"><h2>Sovgad & Sekirite</h2>
+<p><b>Sovgad</b> se kopi teknik tout done lojisyèl la pou kapab retabli yo si gen pwoblèm. Li pa menm bagay ak Rapò Jounalye.</p>
+<div class="backupCards">
+ <div><small>SOVGAD DONE</small><h3>Kopi konplè sistèm nan</h3><p>Kliyan, peman, frè/amand, remèt fon, peryòd ak achiv.</p><button onclick="backup()">Telechaje Sovgad (.json)</button></div>
+ <div><small>RETABLI DONE</small><h3>Restore yon sovgad</h3><p>Chwazi yon fichye sovgad SISI SAPOTAY ki te telechaje deja.</p><input id="restoreFile" type="file" accept=".json,application/json"><button onclick="restoreBackup()">Retabli Sovgad</button></div>
+</div>
+<hr><h3>Sekirite Responsab</h3><button onclick="changeCode()">Chanje Kòd Responsab</button></div></section>
+</main></div>
+<div id="cloudLoginModal" class="authModal">
+<div class="authCard">
+<small>SISI SAPOTAY ONLINE</small><h2>Koneksyon Responsab</h2>
+<p>Antre imel ak modpas Administrasyon Supabase la.</p>
+<input id="cloudEmail" type="email" autocomplete="username" placeholder="Imel responsab">
+<input id="cloudPassword" type="password" autocomplete="current-password" placeholder="Modpas">
+<div id="cloudLoginError" class="authError"></div>
+<div class="authActions"><button onclick="closeCloudLogin()">Anile</button><button onclick="submitCloudLogin()">Konekte</button></div>
+</div></div><div id="authModal" class="authModal">
+  <div class="authCard">
+    <button class="profileClose" onclick="cancelAuth()">×</button>
+    <small>SEKIRITE RESPONSAB</small>
+    <h2>Kòd responsab</h2>
+    <p>Antre kòd la pou kontinye.</p>
+    <input id="authInput" type="password" maxlength="8" autocomplete="off" placeholder="••••••••">
+    <div id="authError" class="authError"></div>
+    <div class="authActions"><button onclick="cancelAuth()">Anile</button><button onclick="submitAuth()">Kontinye</button></div>
+  </div>
+</div>
+<div id="profileModal" class="profileModal"><div class="profileCard"><button class="profileClose" onclick="closeProfile()">×</button><div id="profileBody"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script><script src="app.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}</script></body></html>

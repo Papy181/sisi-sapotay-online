@@ -1,0 +1,66 @@
+*{box-sizing:border-box}body{margin:0;font:14px Segoe UI,Arial;background:#f3f4f8;color:#252b38}.app{display:flex;min-height:100vh}aside{width:250px;position:fixed;inset:0 auto 0 0;background:linear-gradient(#111722,#24203b);padding:25px 16px;color:white;display:flex;flex-direction:column;gap:7px}aside h2{padding:0 8px 22px;border-bottom:1px solid #fff2}aside h2 span{font-size:15px;margin-left:8px}aside button,.panel button,.hero button{border:0;border-radius:10px;padding:12px;background:#ffffff0c;color:white;text-align:left;cursor:pointer}aside button:hover{background:#ffffff18}aside em{margin-top:auto;font-size:9px;text-align:center;color:#9498aa}main{margin-left:250px;width:calc(100% - 250px);padding:32px}header,.head{display:flex;justify-content:space-between;align-items:center}header{margin-bottom:25px}header small{color:#b88316;font-weight:bold;letter-spacing:1px}header h1{margin:4px 0}header>b{font-size:10px;color:#39806b;background:white;padding:11px;border-radius:10px}.page{display:none}.page.active{display:block}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.cards article,.panel{background:white;border:1px solid #e2e3ea;border-radius:16px;box-shadow:0 10px 30px #1112}.cards article{padding:20px;border-left:4px solid #c9972b;color:#747b89}.cards strong{display:block;font-size:25px;color:#242a38;margin-top:9px}.panel{padding:21px;margin-top:18px}.panel button{background:linear-gradient(135deg,#d0a13a,#8b5e0a);font-weight:bold}.panel p{color:#747b89}table{width:100%;border-collapse:collapse;margin-top:18px;font-size:12px}th{background:#202536;color:white;text-align:left;padding:11px}td{padding:11px;border-bottom:1px solid #e8e9ee}.danger{color:#a43f4b!important;background:#f6eaec!important}.secure{background:#eef0f5!important;color:#343a49!important;padding:7px!important;margin-right:4px!important}#welcome{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 70% 20%,#d6a83d55,transparent 25%),linear-gradient(135deg,#0d121a,#1d2430 55%,#3a2b13);display:grid;place-items:center;transition:.5s}.hero{text-align:center;color:white;padding:50px;width:min(620px,90%);border:1px solid #fff2;border-radius:28px;background:#fff1}.hero .mark{margin:auto;width:85px;height:85px;border-radius:25px;background:linear-gradient(145deg,#e0b95b,#8f650d);display:grid;place-items:center;font-size:28px;font-weight:900}.hero small{display:block;margin-top:18px;letter-spacing:3px;color:#ead7a5}.hero h1{font-size:46px;margin:8px}.hero h1 b{color:#e3bc5d}.hero p{color:#d1d3dc}.hero button{display:inline-block;background:#b88316;margin:20px 0;font-weight:bold}.hero i{display:block;color:#9da0ad;font-size:11px}#welcome.hide{opacity:0;visibility:hidden}@media(max-width:700px){aside{position:static;width:100%}.app{display:block}main{margin:0;width:100%;padding:15px}.cards{grid-template-columns:1fr}}
+/* GOLD RESPONSABLE THEME */
+body{background:radial-gradient(circle at 85% 0,#f5e8c7,transparent 27%),#f6f3ec}
+aside{background:linear-gradient(180deg,#17140f,#292218 62%,#3b2b12)}
+.cards article{border-left-color:#c9972b}
+.panel button{background:linear-gradient(135deg,#d2a33c,#9c6d0d)}
+header small{color:#a87412}
+.hero{border-color:#e4bd5b33}
+.hero h1 b{color:#e4bd5b}
+.hero button{background:linear-gradient(135deg,#d2a33c,#96660b)}
+
+@media print{aside,header,.head button,#welcome{display:none!important}main{margin:0;width:100%;padding:10px}.page{display:none!important}#reports{display:block!important}.panel{box-shadow:none;border:0}}
+#fees .panel>p{background:#fbf6e9;border-left:4px solid #c9972b;padding:12px;border-radius:8px;line-height:1.5}
+
+#funds .panel>p{background:#fbf6e9;border-left:4px solid #c9972b;padding:12px;border-radius:8px;line-height:1.5}
+#funds td b{font-size:10px;color:#8b650e;background:#f8edce;padding:5px 7px;border-radius:7px}
+
+.dailyTotals{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0}.dailyTotals article{background:#fbf7ec;border:1px solid #eadcb9;border-radius:12px;padding:14px}.dailyTotals span{display:block;font-size:10px;color:#7d735d;text-transform:uppercase}.dailyTotals strong{display:block;margin-top:6px;font-size:17px;color:#6e4d0b}#dailyReport h3{margin:22px 0 8px;color:#73530f}
+@media(max-width:900px){.dailyTotals{grid-template-columns:repeat(2,1fr)}}
+@media print{body.printingDaily aside,body.printingDaily header,body.printingDaily .page,body.printingDaily #welcome{display:none!important}body.printingDaily #daily{display:block!important}body.printingDaily #daily .head button,body.printingDaily #daily .head input{display:none!important}body.printingDaily main{margin:0;width:100%;padding:5px}}
+
+/* SISI SAPOTAY warm orange / cream / brown / gold palette */
+body{background:radial-gradient(circle at 90% 0,#fdebd9,transparent 27%),#fff8ef;color:#3d291a}
+aside{background:linear-gradient(180deg,#5a2606,#8e3c05 58%,#4b1d03)}
+aside button:hover{background:#ffb26b22}
+header small{color:#c86b14}.cards article{border-left-color:#ef8a32}.panel button,.hero button{background:linear-gradient(135deg,#ef913e,#b76513);box-shadow:0 7px 18px #b7651325}.cards article,.panel{border-color:#f0dcc8}.hero .mark{background:linear-gradient(145deg,#f6a04b,#9f4a09)}#welcome{background:radial-gradient(circle at 70% 20%,#f39a4450,transparent 27%),linear-gradient(135deg,#3e1b07,#6d2c05 55%,#9b4a0a)}.hero h1 b{color:#e6b84c}.hero small{color:#f3d5b7}
+.calendarGrid{display:grid;grid-template-columns:repeat(10,1fr);gap:7px;margin-top:18px}.day{min-height:72px;border:1px solid #edd6bf;background:#fffaf5;border-radius:10px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center}.day small{color:#9c7657;text-transform:uppercase;font-size:9px}.day b{font-size:18px}.day span{font-size:9px;color:#a18a77}.day.paid{background:linear-gradient(145deg,#fff1d2,#f6d27c);border-color:#d9a83e}.day.paid span{color:#6c4b05;font-weight:bold}.calInfo{margin-top:15px;background:#fff1df;border-left:4px solid #e88a30;padding:12px;border-radius:8px}
+.chip{display:inline-block;padding:5px 8px;border-radius:8px;font-size:10px;font-weight:bold}.chip.ok{background:#e8f3e8;color:#3d7342}.chip.warning{background:#fff0d8;color:#a26113}.chip.critical{background:#f9dfdf;color:#a43d3d}
+.profileModal{display:none;position:fixed;inset:0;background:#2a1208bb;backdrop-filter:blur(5px);z-index:100;align-items:center;justify-content:center;padding:20px}.profileModal.show{display:flex}.profileCard{position:relative;background:#fffaf5;width:min(850px,100%);max-height:90vh;overflow:auto;border-radius:20px;padding:25px;box-shadow:0 30px 80px #0005}.profileClose{position:absolute;right:18px;top:18px;border:0;background:#f3e5d7;border-radius:50%;width:35px;height:35px;font-size:20px;cursor:pointer}.profileHead small{color:#b46a1d;font-weight:bold;letter-spacing:1px}.profileHead h2{font-size:28px;margin:5px 0}.profileHead p{color:#826c5a}.profileStats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.profileStats div{background:#fff0df;border:1px solid #efd4b7;border-radius:12px;padding:13px}.profileStats span{display:block;font-size:9px;text-transform:uppercase;color:#8f735b}.profileStats b{display:block;margin-top:5px}.profileInfo{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;background:#fff;padding:13px;border-radius:12px;border:1px solid #efdfd0}
+@media(max-width:1000px){.calendarGrid{grid-template-columns:repeat(7,1fr)}}@media(max-width:700px){.calendarGrid{grid-template-columns:repeat(4,1fr)}.profileStats,.profileInfo{grid-template-columns:repeat(2,1fr)}}
+
+.contactBig{font-size:16px!important;line-height:1.65!important;font-style:normal!important;font-weight:700;color:#ffe3bd!important;letter-spacing:.2px}.periodCurrent{margin:18px 0 25px;padding:18px;border-radius:14px;background:linear-gradient(135deg,#fff1d9,#f7d391);border-left:5px solid #bd781c}.periodCurrent small{font-weight:800;color:#9c6416;letter-spacing:1px}.periodCurrent h3{font-size:23px;margin:5px 0;color:#5e330b}.periodCurrent p{font-size:14px;color:#76552f}
+
+/* MENU FIX — pèmèt wè tout bouton anba yo tankou Sovgad */
+aside{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#d49a3b #5a2606}
+aside::-webkit-scrollbar{width:7px}
+aside::-webkit-scrollbar-track{background:#5a2606}
+aside::-webkit-scrollbar-thumb{background:#d49a3b;border-radius:10px}
+aside h2{flex:0 0 auto}
+aside button{flex:0 0 auto;min-height:42px}
+aside em{margin-top:14px!important;padding:12px 0 4px;flex:0 0 auto}
+@media(min-width:701px){aside{height:100vh}}
+
+/* Kòd responsab maske */
+.authModal{display:none;position:fixed;inset:0;background:#2a1208bb;backdrop-filter:blur(5px);z-index:120;align-items:center;justify-content:center;padding:20px}
+.authModal.show{display:flex}
+.authCard{position:relative;width:min(390px,100%);background:#fffaf5;border:1px solid #ead3bb;border-radius:20px;padding:26px;box-shadow:0 30px 80px #0005}
+.authCard small{font-weight:800;color:#ad681c;letter-spacing:1px}.authCard h2{margin:5px 0}.authCard p{color:#806b58}
+.authCard input{width:100%;font-size:25px;letter-spacing:8px;padding:13px 15px;border:1px solid #d8b994;border-radius:12px;background:#fff;margin-top:12px}
+.authActions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}.authActions button{min-height:42px;padding:0 16px;border:0;border-radius:10px;cursor:pointer}.authActions button:last-child{background:linear-gradient(135deg,#ef913e,#b76513);color:white;font-weight:800}
+.authError{min-height:20px;margin-top:7px;color:#a43d3d;font-size:12px;font-weight:700}
+
+/* Kontwòl pwofesyonèl peryòd / reta / sovgad */
+.day.future{opacity:.62;background:#fffaf5}.day.future span{color:#9d8a79}
+.day.lateDay{background:#fff0e3;border-color:#e6a66f}.day.lateDay span{color:#a34d20;font-weight:800}
+.chip.ahead{background:#e6eef8;color:#345d89}
+.backupCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+.backupCards>div{background:#fff8ef;border:1px solid #ead7c3;border-radius:14px;padding:18px}
+.backupCards small{font-weight:900;letter-spacing:1px;color:#ad681c}.backupCards h3{margin:5px 0}.backupCards p{color:#806b58;min-height:42px}
+.backupCards input[type=file]{display:block;width:100%;margin:10px 0;padding:10px;border:1px solid #ddc4aa;border-radius:10px;background:white}
+@media(max-width:700px){.backupCards{grid-template-columns:1fr}}
+
+/* FINAL — login, audit, late-payment history */
+.sessionBox{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.sessionBox button{border:1px solid #e1c5a5;background:#fff8ef;color:#6d3a10;border-radius:9px;padding:7px 10px;cursor:pointer;font-weight:700}
+.day.paidLate{background:#ffe4c7;border-color:#d9772c}.day.paidLate span{color:#9d4517;font-weight:900}
+#auditRows td:first-child{white-space:nowrap}

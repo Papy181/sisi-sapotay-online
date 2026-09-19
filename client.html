@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="ht"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISI SAPOTAY — Espas Kliyan</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#fff8ef;color:#3d291a}.wrap{max-width:760px;margin:auto;padding:18px}.brand{text-align:center;padding:22px 8px}.logo{width:72px;height:72px;border-radius:22px;margin:auto;background:linear-gradient(145deg,#f6a04b,#9f4a09);display:grid;place-items:center;color:#fff;font-size:30px;font-weight:900}.brand h1{margin:10px 0 3px}.brand p{margin:0;color:#82674e;line-height:1.5}.card{background:#fff;border:1px solid #efd9c5;border-radius:18px;padding:20px;margin:14px 0}label{display:block;font-size:12px;font-weight:bold;margin:12px 0 5px}input{width:100%;padding:13px;font-size:16px;border:1px solid #d9b995;border-radius:11px}.btn{width:100%;padding:14px;margin-top:16px;border:0;border-radius:11px;background:linear-gradient(135deg,#ef913e,#a9520d);color:#fff;font-weight:900}.hidden{display:none}.msg{color:#a43d3d;min-height:20px;margin-top:8px}.head{display:flex;justify-content:space-between;gap:10px;align-items:center}.head button{padding:9px;border:1px solid #ddc2a6;background:#fff8ef;border-radius:9px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#fff3e5;padding:12px;border-radius:11px}.stat span{font-size:9px;text-transform:uppercase;color:#846b55;display:block}.stat b{display:block;margin-top:5px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.day{text-align:center;border:1px solid #ead8c6;border-radius:8px;padding:7px 2px;min-height:58px}.day small,.day span{display:block;font-size:8px}.day b{font-size:16px}.paid{background:#f5df9f}.late{background:#ffe2cf}.future{opacity:.55}.foot{text-align:center;color:#90745d;font-size:11px;padding:18px}@media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.calendar{grid-template-columns:repeat(5,1fr)}}
+</style><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d2c05"><link rel="apple-touch-icon" href="icon-192.png"></head><body><div class="wrap"><div class="brand"><div class="logo">S</div><h1>SISI SAPOTAY</h1><p>Espas Kliyan<br>116, Rue Vernet, Gves - Haïti<br>(509) 3330-6184 / 4308-8247</p></div>
+<div id="cloudStatus" style="text-align:center;font-size:12px;font-weight:700;color:#8a5a2b;margin-bottom:8px">Koneksyon Online ap verifye...</div><div id="login" class="card"><h2>Verifye kont ou</h2><p>Antre N° Kliyan ou ak telefòn ki anrejistre sou dosye ou.</p><label>N° Kliyan</label><input id="no" placeholder="S-0001"><label>Telefòn</label><input id="tel" type="tel"><button class="btn" onclick="login()">ANTRE NAN KONT MWEN</button><div id="msg" class="msg"></div></div>
+<div id="acct" class="hidden"><div class="card"><div class="head"><div><small>KONT KLIYAN</small><h2 id="name"></h2><p id="id"></p></div><button onclick="logout()">Soti</button></div><div class="stats"><div class="stat"><span>Men</span><b id="hands"></b></div><div class="stat"><span>Jou Kouvri</span><b id="days"></b></div><div class="stat"><span>Total Peye</span><b id="total"></b></div><div class="stat"><span>Reta</span><b id="late"></b></div><div class="stat"><span>Estati</span><b id="status"></b></div><div class="stat"><span>Peryòd</span><b id="period"></b></div></div></div><div class="card"><h3>Kalandriye Peman Mwen</h3><p>Ou wè sèlman pwòp enfòmasyon ou; ou pa kapab modifye anyen.</p><div id="cal" class="calendar"></div></div><div class="card"><h3>Dènye Peman</h3><div id="pays"></div></div></div><div class="foot">SISI SAPOTAY • Espas Kliyan</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script><script src="cloud.js"></script>
+<script>
+const K="SISI_SAPOTAY_DB",$=x=>document.getElementById(x),money=n=>new Intl.NumberFormat("fr-FR").format(Number(n||0))+" Gdes";
+function db(){try{return JSON.parse(localStorage.getItem(K))}catch(e){return null}}
+function dates(p){let a=[],d=new Date(p.start+"T00:00:00"),e=new Date(p.end+"T00:00:00");while(d<=e){a.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}return a}
+function cov(d,n){let u=[];(d.payments||[]).filter(p=>p.no===n).forEach(p=>{if(Array.isArray(p.coveredDates))u.push(...p.coveredDates);else{let a=dates(d.period);for(let i=0;i<Number(p.days||0);i++){let x=a.find(v=>!u.includes(v));if(x)u.push(x)}}});return u}
+async function login(){
+ let n=$("no").value.trim().toUpperCase(),t=$("tel").value.replace(/\D/g,"");
+ if(!n||!t){$("msg").textContent="Antre N° kliyan ak telefòn ou.";return}
+ $("msg").textContent="Verifikasyon...";
+ try{
+   if(window.SisiCloud&&SisiCloud.ready()){
+     let r=await SisiCloud.clientPortal(n,t);
+     if(!r||!r.ok){$("msg").textContent="N° kliyan oswa telefòn lan pa koresponn.";return}
+     let d={clients:[{no:r.client.no,nom:r.client.nom,prenom:r.client.prenom,hands:r.client.hands,tel:t}],payments:r.payments||[],period:r.period};
+     $("msg").textContent="";show(d,d.clients[0]);return
+   }
+ }catch(e){$("msg").textContent="Koneksyon sou entènèt la gen yon pwoblèm. Eseye ankò.";return}
+ let d=db();if(!d){$("msg").textContent="Sistèm Online lan poko konekte ak bazdone santral la.";return}
+ let c=(d.clients||[]).find(x=>String(x.no).toUpperCase()===n&&String(x.tel||"").replace(/\D/g,"")===t);
+ if(!c){$("msg").textContent="N° kliyan oswa telefòn lan pa koresponn.";return}
+ $("msg").textContent="";show(d,c)
+}
+function show(d,c){$("login").classList.add("hidden");$("acct").classList.remove("hidden");$("name").textContent=c.nom+" "+c.prenom;$("id").textContent=c.no;$("hands").textContent=c.hands;let u=cov(d,c.no),p=(d.payments||[]).filter(x=>x.no===c.no),today=new Date().toISOString().slice(0,10),a=dates(d.period),due=a.filter(x=>x<=today),l=due.filter(x=>!u.includes(x));$("days").textContent=u.length;$("total").textContent=money(p.reduce((s,x)=>s+Number(x.total||0),0));$("late").textContent=l.length+" jou";$("status").textContent=l.length?"Anreta "+l.length+" jou":"Ajou";$("period").textContent=d.period.start+" → "+d.period.end;$("cal").innerHTML=a.map(ds=>{let dt=new Date(ds+"T00:00:00"),pd=u.includes(ds),cl=pd?"paid":ds<=today?"late":"future",lab=pd?"✓ Peye":ds<=today?"Anreta":"Poko rive";return `<div class="day ${cl}"><small>${dt.toLocaleDateString("ht-HT",{month:"short"})}</small><b>${dt.getDate()}</b><span>${lab}</span></div>`}).join("");$("pays").innerHTML=p.slice().reverse().slice(0,10).map(x=>`<p><b>${x.date}</b> — ${x.days} jou — ${money(x.total)}</p>`).join("")||"<p>Pa gen peman.</p>"}
+function logout(){$("acct").classList.add("hidden");$("login").classList.remove("hidden");$("no").value="";$("tel").value=""}
+</script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}</script><script>
+window.addEventListener("load",()=>{
+ const el=document.getElementById("cloudStatus");
+ if(el) el.textContent=(window.SisiCloud&&SisiCloud.ready())?"● SISI SAPOTAY Online konekte":"○ Mòd lokal";
+});
+</script></body></html>
