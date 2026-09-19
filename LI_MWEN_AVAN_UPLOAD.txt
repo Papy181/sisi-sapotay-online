@@ -1,14 +1,5 @@
-SISI SAPOTAY — PAKÈ GITHUB PAGES
+SISI SAPOTAY - SEPARATION CLIENT/ADMIN
 
-Upload TOUT fichye ki nan dosye sa a dirèkteman nan rasin repository sisi-sapotay la.
-Pa upload ZIP la kòm sèl fichye.
-
-Fichye prensipal:
-- index.html : paj antre
-- admin.html : espas Responsab (Supabase Auth + RLS)
-- client.html : espas Kliyan
-- config.js / cloud.js : koneksyon Supabase ak client_portal RPC
-- app.js / style.css : lojisyèl Administrasyon
-- manifest.webmanifest / sw.js / icon-*.png : PWA / ikon enstalasyon
-
-Pa mete okenn database password, secret key oswa service_role key sou GitHub.
+index.html se pòt piblik kliyan.
+admin.html rete pou Responsab.
+Pou antre admin itilize admin-login.html oswa admin.html.
