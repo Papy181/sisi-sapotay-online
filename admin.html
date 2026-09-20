@@ -1,4 +1,21 @@
-<!doctype html><html lang="ht"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISI SAPOTAY Manager</title><link rel="stylesheet" href="style.css"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d2c05"><link rel="apple-touch-icon" href="icon-192.png"></head><body>
+<!doctype html><html lang="ht"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SISI SAPOTAY Manager</title><link rel="stylesheet" href="style.css"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d2c05"><link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<style id="authGateStyle">body{visibility:hidden}</style>
+<script>
+(async()=>{
+ try{
+  const c=window.SISI_CLOUD||{};
+  if(!window.supabase||!c.SUPABASE_URL||!c.SUPABASE_PUBLISHABLE_KEY)throw new Error('cloud');
+  const s=window.supabase.createClient(c.SUPABASE_URL,c.SUPABASE_PUBLISHABLE_KEY);
+  const {data}=await s.auth.getSession();
+  if(!data||!data.session){location.replace('admin-login.html');return}
+  const {data:ok,error}=await s.rpc('is_sisi_admin');
+  if(error||ok!==true){await s.auth.signOut();location.replace('admin-login.html');return}
+  window.SISI_ADMIN_AUTH_OK=true;document.getElementById('authGateStyle').remove();
+ }catch(e){location.replace('admin-login.html')}
+})();
+</script></head><body>
 <div id="welcome"><div class="hero"><div class="mark">SS</div><small>SISTÈM JESYON RESPONSAB</small><h1>SISI <b>SAPOTAY</b></h1><p>Jesyon pwofesyonèl kliyan, peman, reta ak peryòd</p><button onclick="requestLogin()">ANTRE NAN SISTÈM NAN →</button><i class="contactBig">116, Rue Vernet, Gves - Haïti<br>Tel: (509) 3330-6184 / 4308-8247</i></div></div>
 <div class="app"><aside><h2>SS <span>SISI SAPOTAY</span></h2><button onclick="page('dash')">◈ Dashboard</button><button onclick="page('clients')">👥 Kliyan</button>
 <button onclick="page('calendar')">▦ Kalandriye Peman</button>
@@ -48,6 +65,5 @@
   </div>
 </div>
 <div id="profileModal" class="profileModal"><div class="profileCard"><button class="profileClose" onclick="closeProfile()">×</button><div id="profileBody"></div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script><script src="app.js"></script>
+<script src="app.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}</script></body></html>
