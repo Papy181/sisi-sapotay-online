@@ -3,8 +3,44 @@
 </style><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#6d2c05"><link rel="apple-touch-icon" href="icon-192.png"></head><body><div class="wrap"><div class="brand"><div class="logo">S</div><h1>SISI SAPOTAY</h1><p>Espas Kliyan<br>116, Rue Vernet, Gves - Haïti<br>(509) 3330-6184 / 4308-8247</p></div>
 <div id="cloudStatus" style="text-align:center;font-size:12px;font-weight:700;color:#8a5a2b;margin-bottom:8px">Koneksyon Online ap verifye...</div><div id="login" class="card"><h2>Verifye kont ou</h2><p>Antre N° Kliyan ou ak telefòn ki anrejistre sou dosye ou.</p><label>N° Kliyan</label><input id="no" placeholder="S-0001"><label>Telefòn</label><input id="tel" type="tel"><button class="btn" onclick="login()">ANTRE NAN KONT MWEN</button><div id="msg" class="msg"></div></div>
 <div id="acct" class="hidden"><div class="card"><div class="head"><div><small>KONT KLIYAN</small><h2 id="name"></h2><p id="id"></p></div><button onclick="logout()">Soti</button></div><div class="stats"><div class="stat"><span>Men</span><b id="hands"></b></div><div class="stat"><span>Jou Kouvri</span><b id="days"></b></div><div class="stat"><span>Total Peye</span><b id="total"></b></div><div class="stat"><span>Reta</span><b id="late"></b></div><div class="stat"><span>Estati</span><b id="status"></b></div><div class="stat"><span>Peryòd</span><b id="period"></b></div></div></div><div class="card"><h3>Kalandriye Peman Mwen</h3><p>Ou wè sèlman pwòp enfòmasyon ou; ou pa kapab modifye anyen.</p><div id="cal" class="calendar"></div></div><div class="card"><h3>Dènye Peman</h3><div id="pays"></div></div></div><div class="foot">SISI SAPOTAY • Espas Kliyan</div></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script><script src="cloud.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+
+<script src="config.js">
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+<script src="cloud.js">
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+
 <script>
 const K="SISI_SAPOTAY_DB",$=x=>document.getElementById(x),money=n=>new Intl.NumberFormat("fr-FR").format(Number(n||0))+" Gdes";
 function db(){try{return JSON.parse(localStorage.getItem(K))}catch(e){return null}}
@@ -29,9 +65,45 @@ async function login(){
 }
 function show(d,c){$("login").classList.add("hidden");$("acct").classList.remove("hidden");$("name").textContent=c.nom+" "+c.prenom;$("id").textContent=c.no;$("hands").textContent=c.hands;let u=cov(d,c.no),p=(d.payments||[]).filter(x=>x.no===c.no),today=new Date().toISOString().slice(0,10),a=dates(d.period),due=a.filter(x=>x<=today),l=due.filter(x=>!u.includes(x));$("days").textContent=u.length;$("total").textContent=money(p.reduce((s,x)=>s+Number(x.total||0),0));$("late").textContent=l.length+" jou";$("status").textContent=l.length?"Anreta "+l.length+" jou":"Ajou";$("period").textContent=d.period.start+" → "+d.period.end;$("cal").innerHTML=a.map(ds=>{let dt=new Date(ds+"T00:00:00"),pd=u.includes(ds),cl=pd?"paid":ds<=today?"late":"future",lab=pd?"✓ Peye":ds<=today?"Anreta":"Poko rive";return `<div class="day ${cl}"><small>${dt.toLocaleDateString("ht-HT",{month:"short"})}</small><b>${dt.getDate()}</b><span>${lab}</span></div>`}).join("");$("pays").innerHTML=p.slice().reverse().slice(0,10).map(x=>`<p><b>${x.date}</b> — ${x.days} jou — ${money(x.total)}</p>`).join("")||"<p>Pa gen peman.</p>"}
 function logout(){$("acct").classList.add("hidden");$("login").classList.remove("hidden");$("no").value="";$("tel").value=""}
-</script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}</script><script>
+
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+<script>
 window.addEventListener("load",()=>{
  const el=document.getElementById("cloudStatus");
  if(el) el.textContent=(window.SisiCloud&&SisiCloud.ready())?"● SISI SAPOTAY Online konekte":"○ Mòd lokal";
 });
-</script></body></html>
+
+<script>
+function formatPhone509(value){
+ let n=String(value||"").replace(/\D/g,"");
+ if(n.startsWith("509")) n=n.slice(3);
+ return n.length===8 ? "+509 "+n.slice(0,4)+"-"+n.slice(4) : value;
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ const t=document.getElementById("tel");
+ if(t) t.addEventListener("blur",()=>t.value=formatPhone509(t.value));
+});
+</script>
+</body></html>

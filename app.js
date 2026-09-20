@@ -1,3 +1,9 @@
+function formatPhone509(value){
+  let n = String(value || "").replace(/\D/g,"");
+  if(n.startsWith("509")) n=n.slice(3);
+  if(n.length===8) return "+509 "+n.slice(0,4)+"-"+n.slice(4);
+  return value;
+}
 const K="SISI_DB",CK="SISI_CODE_V2";let db=JSON.parse(localStorage.getItem(K)||'{"clients":[],"payments":[],"fees":[]}');if(!db.fees)db.fees=[];if(!db.funds)db.funds=[];if(!db.archives)db.archives=[];if(!db.audit)db.audit=[];if(!db.period)db.period={name:"Sòl 2026",start:"2026-09-15",end:"2026-11-03",daily:100};if(!localStorage.getItem(CK)||localStorage.getItem(CK)==="2026")localStorage.setItem(CK,"sisi2026");const $=x=>document.getElementById(x),fmt=n=>Number(n||0).toLocaleString("fr-FR")+" Gdes";let sessionOpen=false;
 function enterApp(){sessionOpen=true;$("welcome").classList.add("hide");logAction("Koneksyon","Sesyon responsab ouvè")}
 function requestLogin(){auth(()=>enterApp())}
@@ -53,7 +59,7 @@ function daysBetween(a,b){
  let x=new Date(a+"T00:00:00"),y=new Date(b+"T00:00:00");
  return Math.max(0,Math.round((y-x)/86400000))
 }
-function addClient(){let no=next(db.clients,"no","S-"),nom=prompt("Nom:");if(!nom)return;let prenom=prompt("Prénom:")||"",nif=prompt("NIF/CIN:")||"",adr=prompt("Adresse:")||"",tel=prompt("Tel:")||"",hands=Number(prompt("Nbre(s) de main(s):","1"))||1;db.clients.push({no,nom,prenom,nif,adr,tel,hands});logAction("Ajoute kliyan",no+" - "+nom+" "+prenom);save()}function editClient(i){auth(()=>{let c=db.clients[i];c.nom=prompt("Nom:",c.nom)||c.nom;c.prenom=prompt("Prénom:",c.prenom)||c.prenom;c.nif=prompt("NIF/CIN:",c.nif)??c.nif;c.adr=prompt("Adresse:",c.adr)??c.adr;c.tel=prompt("Tel:",c.tel)??c.tel;c.hands=Number(prompt("Nbre(s) de main(s):",c.hands))||c.hands;save()})}function del(t,i){auth(()=>{if(confirm("Responsab: ou konfime efase sa a?")){db[t].splice(i,1);save()}})}function addPay(){
+function addClient(){let no=next(db.clients,"no","S-"),nom=prompt("Nom:");if(!nom)return;let prenom=prompt("Prénom:")||"",nif=prompt("NIF/CIN:")||"",adr=prompt("Adresse:")||"",tel=formatPhone509(prompt("Tel:")||""),hands=Number(prompt("Nbre(s) de main(s):","1"))||1;db.clients.push({no,nom,prenom,nif,adr,tel,hands});logAction("Ajoute kliyan",no+" - "+nom+" "+prenom);save()}function editClient(i){auth(()=>{let c=db.clients[i];c.nom=prompt("Nom:",c.nom)||c.nom;c.prenom=prompt("Prénom:",c.prenom)||c.prenom;c.nif=prompt("NIF/CIN:",c.nif)??c.nif;c.adr=prompt("Adresse:",c.adr)??c.adr;c.tel=prompt("Tel:",c.tel)??c.tel;c.hands=Number(prompt("Nbre(s) de main(s):",c.hands))||c.hands;save()})}function del(t,i){auth(()=>{if(confirm("Responsab: ou konfime efase sa a?")){db[t].splice(i,1);save()}})}function addPay(){
  if(!db.clients.length)return alert("Ajoute kliyan anvan.");
  let list=db.clients.map(c=>c.no+" - "+c.nom+" "+c.prenom).join("\n"),id=prompt("Antre No kliyan an:\n"+list);
  let c=db.clients.find(c=>c.no===id);if(!c)return alert("Kliyan pa jwenn.");
