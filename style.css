@@ -64,3 +64,33 @@ aside em{margin-top:14px!important;padding:12px 0 4px;flex:0 0 auto}
 .sessionBox{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.sessionBox button{border:1px solid #e1c5a5;background:#fff8ef;color:#6d3a10;border-radius:9px;padding:7px 10px;cursor:pointer;font-weight:700}
 .day.paidLate{background:#ffe4c7;border-color:#d9772c}.day.paidLate span{color:#9d4517;font-weight:900}
 #auditRows td:first-child{white-space:nowrap}
+
+/* SISI SAPOTAY dashboard polish */
+.brand-logo{
+ position:fixed;
+ top:12px;
+ right:18px;
+ width:78px;
+ height:78px;
+ padding:8px;
+ background:rgba(255,255,255,.55);
+ backdrop-filter:blur(6px);
+ border-radius:20px;
+ box-shadow:0 8px 25px rgba(0,0,0,.18);
+ z-index:20;
+}
+.brand-logo img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+}
+aside{
+ background:linear-gradient(180deg,rgba(109,44,5,.96),rgba(45,25,10,.96));
+ backdrop-filter:blur(8px);
+}
+aside h2{
+ color:#f4d27a;
+}
+header h1{
+ color:#6d2c05;
+}
