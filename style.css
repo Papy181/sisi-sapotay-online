@@ -117,3 +117,10 @@ header h1{
  object-fit:contain;
  border-radius:inherit;
 }
+
+/* Ajustement dashboard SISI */
+aside h2 img{width:55px;height:55px;object-fit:contain;display:block;margin:0 auto 10px;border-radius:12px}
+aside h2{display:flex;flex-direction:column;align-items:center;text-align:center}
+.brand-logo{position:fixed;top:18px;left:275px;z-index:20;background:rgba(255,255,255,.35);backdrop-filter:blur(8px);padding:8px;border-radius:16px}
+.brand-logo img{width:75px;height:75px;object-fit:contain}
+header{padding-top:15px}
