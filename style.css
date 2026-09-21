@@ -149,3 +149,31 @@ header{
  padding-top:10px;
  min-height:80px;
 }
+
+/* VERIFIED HEADER FIX */
+.brand-logo{
+ position:fixed !important;
+ top:20px !important;
+ right:20px !important;
+ left:auto !important;
+ width:58px !important;
+ height:58px !important;
+ padding:6px !important;
+ background:rgba(255,255,255,0.35) !important;
+ backdrop-filter:blur(10px);
+ border-radius:16px;
+ z-index:50;
+}
+.brand-logo img{
+ width:100% !important;
+ height:100% !important;
+ object-fit:contain;
+}
+header{
+ margin-left:0;
+ padding-top:10px !important;
+}
+aside h2 img{
+ width:50px !important;
+ height:50px !important;
+}
