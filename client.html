@@ -47,7 +47,7 @@ function db(){try{return JSON.parse(localStorage.getItem(K))}catch(e){return nul
 function dates(p){let a=[],d=new Date(p.start+"T00:00:00"),e=new Date(p.end+"T00:00:00");while(d<=e){a.push(d.toISOString().slice(0,10));d.setDate(d.getDate()+1)}return a}
 function cov(d,n){let u=[];(d.payments||[]).filter(p=>p.no===n).forEach(p=>{if(Array.isArray(p.coveredDates))u.push(...p.coveredDates);else{let a=dates(d.period);for(let i=0;i<Number(p.days||0);i++){let x=a.find(v=>!u.includes(v));if(x)u.push(x)}}});return u}
 async function login(){
- let n=$("no").value.trim().toUpperCase(),t=$("tel").value.replace(/\D/g,"");
+ let n=$("no").value.trim().toUpperCase(),t=formatPhone509($("tel").value).replace(/\D/g,"");
  if(!n||!t){$("msg").textContent="Antre N° kliyan ak telefòn ou.";return}
  $("msg").textContent="Verifikasyon...";
  try{
